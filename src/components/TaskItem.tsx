@@ -21,8 +21,8 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, toggleTaskStatus, deleteTask 
             <button onClick={handleDelete}>✖</button>
             <label>
                 <span>
-                    <strong>{task.titulo}</strong>
-                    {task.descripcion && `: ${task.descripcion}`}
+                    <strong>{task.title}</strong>
+                    {task.description && `: ${task.description}`}
                 </span>
                 <input
                     type="checkbox"
