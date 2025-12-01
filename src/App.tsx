@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import TaskForm from './components/TaskForm';
+import TaskList from './components/TaskList';
+import type { Task } from './interfaces/Task';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App: React.FC = () => {
+  const [tasks, setTasks] = useState<Task[]>([]);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const tasks: Task[] = [];
+        setTasks(tasks);
+      } catch (error) {
+        console.error('Error al obtener tareas:', error);
+      }
+    };
+
+    fetchTasks();
+  }, []);
+
+  const addTask = (newTask: Task) => {
+    setTasks((prevTasks) => [...prevTasks, newTask]);
+  };
+
+  const toggleTaskStatus = (taskId: number) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === taskId
+          ? { ...task, status: task.status === 'completada' ? 'pendiente' : 'completada' }
+          : task
+      )
+    );
+  };
+
+  const deleteTask = (taskId: number) => {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <main>
+      <h1>To-Do List</h1>
+      <TaskForm addTask={addTask} />
+      <TaskList tasks={tasks} toggleTaskStatus={toggleTaskStatus} deleteTask={deleteTask} />
+    </main>
+  );
+};
 
-export default App
+export default App;
