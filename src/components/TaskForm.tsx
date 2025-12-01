@@ -6,20 +6,20 @@ interface TaskFormProps {
 }
 
 const TaskForm: React.FC<TaskFormProps> = ({ addTask }) => {
-    const [titulo, setTitulo] = useState('');
-    const [descripcion, setDescripcion] = useState('');
+    const [title, setTitulo] = useState('');
+    const [description, setDescripcion] = useState('');
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (!titulo.trim()) return;
+        if (!title.trim()) return;
 
         try {
             const id = Math.floor(Math.random() * 1000);
             const newTask: Task = {
                 id,
-                titulo,
-                descripcion,
+                title,
+                description,
                 status: 'pendiente',
             };
             addTask(newTask);
@@ -35,14 +35,14 @@ const TaskForm: React.FC<TaskFormProps> = ({ addTask }) => {
         <form onSubmit={handleSubmit}>
             <input
                 type="text"
-                value={titulo}
+                value={title}
                 onChange={(e) => setTitulo(e.target.value)}
                 placeholder="Título"
                 required
             />
             <input
                 type="text"
-                value={descripcion}
+                value={description}
                 onChange={(e) => setDescripcion(e.target.value)}
                 placeholder="Descripción"
             />

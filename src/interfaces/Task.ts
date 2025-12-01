@@ -1,6 +1,6 @@
 export interface Task {
     id: number;
-    titulo: string;
-    descripcion?: string;
+    title: string;
+    description?: string;
     status: 'pendiente' | 'completada';
 }
