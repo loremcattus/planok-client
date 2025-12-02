@@ -1,12 +1,19 @@
-FROM node:22.14.0-alpine3.21
+# Dockerfile
+FROM node:20-alpine
 
 WORKDIR /app
 
+# Copiar package.json y package-lock.json
 COPY package*.json ./
+
+# Instalar dependencias
 RUN npm install
 
+# Copiar todo el código fuente
 COPY . .
 
+# Exponer puerto de Vite
 EXPOSE 5173
 
-CMD ["npm", "run", "dev"]
+# Comando para desarrollo
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "5173"]
