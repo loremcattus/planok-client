@@ -1,42 +1,118 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #121212;
+  color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  max-width: 600px;
+  margin: 50px auto;
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
   text-align: center;
+  margin-bottom: 20px;
+  color: #ffffff;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+form input {
+  flex: 1;
+  padding: 10px;
+  background-color: #2c2c2c;
+  border: 1px solid #444;
+  color: #f0f0f0;
+  border-radius: 4px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
+form input::placeholder {
   color: #888;
+}
+
+form button {
+  padding: 10px 16px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  padding: 12px 12px 12px 40px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+  color: #f0f0f0;
+}
+
+li.completada {
+  background-color: #1d3c1d;
+  text-decoration: line-through;
+  color: #a0ffa0;
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex: 1;
+  cursor: pointer;
+}
+
+.task-content input[type="checkbox"] {
+  transform: scale(1.2);
+  cursor: pointer;
+  accent-color: #00cc66;
+  margin-left: auto;
+}
+
+.delete-btn {
+  position: absolute;
+  left: 10px;
+  background: transparent;
+  border: none;
+  color: #ff4d4d;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.delete-btn:hover {
+  color: #ff1a1a;
 }

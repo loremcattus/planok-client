@@ -17,19 +17,18 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, toggleTaskStatus, deleteTask 
     };
 
     return (
-        <li>
-            <button onClick={handleDelete}>✖</button>
-            <label>
+        <li className={task.status === 'completed' ? 'completada' : ''}>
+            <button className="delete-btn" onClick={handleDelete}>✖</button>
+            <div className="task-content" onClick={handleToggleStatus}>
                 <span>
                     <strong>{task.title}</strong>
                     {task.description && `: ${task.description}`}
                 </span>
                 <input
                     type="checkbox"
-                    checked={task.status === 'completada'}
-                    onChange={handleToggleStatus}
+                    checked={task.status === 'completed'}
                 />
-            </label>
+            </div>
         </li>
     );
 };

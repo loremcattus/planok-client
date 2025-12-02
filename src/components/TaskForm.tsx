@@ -20,7 +20,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ addTask }) => {
                 id,
                 title,
                 description,
-                status: 'pendiente',
+                status: 'pending',
             };
             addTask(newTask);
 
