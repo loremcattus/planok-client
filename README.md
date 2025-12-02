@@ -43,3 +43,57 @@ Este proyecto está configurado para ser utilizado como entorno de desarrollo. A
   ```
 
 Para más información, consulta la documentación del proyecto o el archivo `docker-compose.yml`.
+
+## Testing
+
+Este proyecto incluye una prueba E2E utilizando Playwright. A continuación se explican los pasos para ejecutar el testing.
+
+### Prueba disponible
+
+El test disponible es el siguiente: `tests/test-todo-list.spec.ts`
+
+Este test realiza una serie de interacciones en la aplicación de la lista de tareas. A continuación se explica su flujo:
+
+1. Abre la aplicación en el navegador.
+
+2. Verifica que la tarea "Pintar:toda la casa" no exista antes de la creación.
+
+3. Crea una nueva tarea con el título "Pintar" y la descripción "toda la casa".
+
+4. Marca la tarea como completada.
+
+5. Elimina la tarea de la lista.
+
+### Instrucciones para ejecutar los tests
+
+#### 1. Levantar los servicios:
+
+Si aún no lo has hecho, levanta los servicios con Docker para el backend.
+
+#### 2. Instalar dependencias:
+Si aún no has instalado las dependencias, ejecuta el siguiente comando:
+
+```
+npm install
+```
+
+
+#### 3. Ejecutar los tests de Playwright:
+Para ejecutar los tests E2E con Playwright, usa el siguiente comando:
+
+```
+npx playwright test
+```
+
+Este comando ejecutará los tests en el entorno local (en este caso, apuntando a http://localhost:5174).
+
+#### 4. Ver los resultados de los tests:
+Una vez que los tests se hayan ejecutado, Playwright mostrará el resultado de cada test en la consola, indicando si pasaron o fallaron.
+
+#### 5. Opciones adicionales:
+
+Para ejecutar los tests en modo de depuración, puedes usar el siguiente comando, que abrirá el navegador y te permitirá inspeccionar los pasos:
+
+```
+npx playwright test --debug
+```
