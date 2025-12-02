@@ -1,73 +1,45 @@
-# React + TypeScript + Vite
+# Configuración del Proyecto
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto está configurado para ser utilizado como entorno de desarrollo. A continuación, se detallan los pasos básicos para montar el proyecto:
 
-Currently, two official plugins are available:
+## Pasos para configurar el proyecto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Copiar el archivo de configuración de entorno:**
+   - Copia el archivo `.env.example` y renómbralo como `.env`.
+   - Asegúrate de configurar las variables de entorno según sea necesario.
 
-## React Compiler
+2. **Construir los contenedores:**
+   - Ejecuta el siguiente comando para construir las imágenes de Docker:
+     ```bash
+     docker compose build
+     ```
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+3. **Levantar los servicios:**
+   - Inicia los servicios definidos en el archivo `docker-compose.yml` con el siguiente comando:
+     ```bash
+     docker compose up
+     ```
 
-## Expanding the ESLint configuration
+4. **Acceder a la aplicación:**
+   - Una vez que los servicios estén en funcionamiento, puedes acceder a la aplicación en tu navegador web en la siguiente URL por defecto:
+     ```
+     http://localhost:5173
+     ```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Requisitos previos
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Docker y Docker Compose:** Asegúrate de tener Docker y Docker Compose instalados en tu sistema. Puedes consultar la [documentación oficial de Docker](https://docs.docker.com/get-docker/) para más detalles sobre la instalación.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Notas adicionales
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Si realizas cambios en el código fuente y deseas reflejarlos en los contenedores, es posible que necesites reconstruir las imágenes utilizando el comando `docker compose build` nuevamente.
+- Para detener los servicios, utiliza el comando:
+  ```bash
+  docker compose down
+  ```
+- Si necesitas ejecutar comandos dentro de un contenedor en ejecución, puedes usar:
+  ```bash
+  docker exec -it <nombre_del_contenedor> /bin/bash
+  ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Para más información, consulta la documentación del proyecto o el archivo `docker-compose.yml`.
