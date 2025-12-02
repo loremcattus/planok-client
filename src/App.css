@@ -49,7 +49,7 @@ form input::placeholder {
 
 form button {
   padding: 10px 16px;
-  background-color: #007bff;
+  background-color: #005fc5;
   color: #ffffff;
   border: none;
   border-radius: 4px;
@@ -115,4 +115,10 @@ li.completada {
 
 .delete-btn:hover {
   color: #ff1a1a;
+}
+
+@media (max-width: 600px) {
+  form {
+    flex-direction: column;
+  }
 }
